@@ -1,16 +1,23 @@
-# This is a sample Python script.
-
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+from drones import create_drone
+from simulation import generate_orders, assign_orders, move_drones, update_deliveries
+from utils import print_state
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def run_simulation():
+    state = {
+        "drones": [create_drone("D1"), create_drone("D2"), create_drone("D3")],
+        "orders": []
+    }
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    total_steps = 5
+
+    for t in range(total_steps):
+        generate_orders(state, t)
+        assign_orders(state)
+        move_drones(state)
+        update_deliveries(state)
+
+        print_state(t, state, total_steps)
+
+
+run_simulation()

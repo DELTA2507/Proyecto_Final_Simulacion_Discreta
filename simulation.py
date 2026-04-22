@@ -1,7 +1,6 @@
 import random
 from graph import graph
 
-
 def generate_orders(state, t):
     if t % random.randint(2, 4) == 0:
         targets = ["P1", "P2", "P3", "P4", "P5"]
